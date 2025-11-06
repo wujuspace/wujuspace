@@ -74,7 +74,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: left;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'ttnorman', sans-serif;
     position: relative;
     display: flex;
     align-items: center;
@@ -260,5 +260,37 @@
         min-width: 60px;
         font-size: 2.5rem;
     }
+}
+
+/* Dark Theme Styles for Services Page */
+[data-theme="dark"] .filter-chip {
+    border-color: var(--border-light);
+    background-color: var(--light-gray);
+}
+
+[data-theme="dark"] .filter-chip:hover {
+    background-color: var(--hover-bg);
+    border-color: var(--border-medium);
+}
+
+[data-theme="dark"] .project-card {
+    background-color: var(--light-gray);
+}
+
+[data-theme="dark"] .project-card:hover {
+    background-color: rgba(42, 42, 42, 0.8);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .project-card::before {
+    background-color: rgba(77, 166, 255, 0.15);
+}
+
+[data-theme="dark"] .project-card-number {
+    color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .project-card:hover .project-card-number {
+    color: rgba(255, 255, 255, 0.2);
 }
 
