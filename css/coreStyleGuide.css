@@ -1202,6 +1202,437 @@ a[role="button"] {
     color: var(--wuju-text-dark);
 }
 
+/* ====== VISUAL TOKENS ====== */
+/* 
+ * VISUAL TOKEN SYSTEM - Grade C
+ * Comprehensive visual design tokens for consistent UI/UX
+ * 
+ * Usage Guidelines:
+ * - Always use CSS custom properties (variables) for colors, spacing, etc.
+ * - Never hardcode values - use tokens for maintainability
+ * - Test tokens in both light and dark modes
+ * - Ensure WCAG AA contrast ratios (4.5:1 minimum)
+ * 
+ * Token Categories:
+ * 1. Colors (Primary, Secondary, Semantic, Neutral)
+ * 2. Typography (Font families, sizes, weights, line heights)
+ * 3. Spacing (8-point grid system)
+ * 4. Borders (Radius, width, styles)
+ * 5. Shadows (Elevation levels)
+ * 6. Transitions (Timing functions, durations)
+ * 7. Z-index (Layering system)
+ */
+
+/* Color Tokens - Primary Palette */
+/* Light Mode Primary Colors */
+/* --wuju-bg-light: Background color for light mode (#f9fafc) */
+/* --wuju-text-light: Primary text color for light mode (#1b1b1d) */
+/* --wuju-accent-light: Gradient accent for light mode (135deg, #8b5cf6, #3b82f6) */
+/* --wuju-accent-solid-light: Solid accent color for light mode (#8b5cf6) */
+/* --wuju-surface-light: Surface/card background for light mode (#ffffff) */
+
+/* Dark Mode Primary Colors */
+/* --wuju-bg-dark: Background color for dark mode (#0f1014) */
+/* --wuju-text-dark: Primary text color for dark mode (#e8e8f0) */
+/* --wuju-accent-dark: Gradient accent for dark mode (135deg, #60a5fa, #a855f7) */
+/* --wuju-accent-solid-dark: Solid accent color for dark mode (#60a5fa) */
+/* --wuju-surface-dark: Surface/card background for dark mode (#1a1b21) */
+
+/* Semantic Color Tokens */
+:root {
+    /* Success States */
+    --wuju-success: #10b981;
+    --wuju-success-light: #d1fae5;
+    --wuju-success-dark: #059669;
+    
+    /* Error States */
+    --wuju-error: #ef4444;
+    --wuju-error-light: #fee2e2;
+    --wuju-error-dark: #dc2626;
+    
+    /* Warning States */
+    --wuju-warning: #f59e0b;
+    --wuju-warning-light: #fef3c7;
+    --wuju-warning-dark: #d97706;
+    
+    /* Info States */
+    --wuju-info: #3b82f6;
+    --wuju-info-light: #dbeafe;
+    --wuju-info-dark: #2563eb;
+    
+    /* Neutral Grays */
+    --wuju-gray-50: #f9fafb;
+    --wuju-gray-100: #f3f4f6;
+    --wuju-gray-200: #e5e7eb;
+    --wuju-gray-300: #d1d5db;
+    --wuju-gray-400: #9ca3af;
+    --wuju-gray-500: #6b7280;
+    --wuju-gray-600: #4b5563;
+    --wuju-gray-700: #374151;
+    --wuju-gray-800: #1f2937;
+    --wuju-gray-900: #111827;
+}
+
+/* Typography Tokens */
+/* Font Families */
+/* Primary Heading Font: 'Plus Jakarta Sans' - Modern, bold, geometric */
+/* Body Font: 'Rubik' - Readable, friendly, versatile */
+/* 
+ * Font Weight Scale:
+ * - 400: Regular (body text)
+ * - 600: Semi-bold (emphasis)
+ * - 700: Bold (buttons, labels)
+ * - 800: Extra-bold (headings)
+ */
+
+/* Spacing Tokens - 8-point Grid System */
+/* All spacing values follow 8px base unit for visual harmony */
+/* --wuju-space-xs: 8px - Tight spacing (icons, badges) */
+/* --wuju-space-sm: 16px - Small spacing (form fields, compact layouts) */
+/* --wuju-space-md: 24px - Medium spacing (cards, sections) */
+/* --wuju-space-lg: 40px - Large spacing (major sections) */
+/* --wuju-space-xl: 60px - Extra large spacing (hero sections) */
+/* --wuju-space-2xl: 80px - Maximum spacing (page-level sections) */
+
+/* Border Radius Tokens */
+/* --wuju-radius-sm: 4px - Small elements (badges, tags) */
+/* --wuju-radius-md: 8px - Standard elements (buttons, inputs) */
+/* --wuju-radius-lg: 16px - Cards, containers */
+/* --wuju-radius-xl: 24px - Large containers, modals */
+
+/* Shadow Tokens - Elevation System */
+/* --wuju-shadow-soft: Subtle elevation (cards, hover states) */
+/* --wuju-shadow-medium: Medium elevation (modals, dropdowns) */
+/* --wuju-shadow-strong: Strong elevation (overlays, popovers) */
+
+/* Transition Tokens */
+/* --wuju-transition-fast: 0.25s ease - Quick interactions (hover, click) */
+/* --wuju-transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1) - Smooth animations */
+
+/* Z-index Scale - Layering System */
+/* --wuju-z-base: 1 - Base layer */
+/* --wuju-z-dropdown: 100 - Dropdowns, tooltips */
+/* --wuju-z-sticky: 200 - Sticky headers, navigation */
+/* --wuju-z-modal: 300 - Modals, dialogs */
+/* --wuju-z-tooltip: 400 - Tooltips, popovers (highest) */
+
+/* ====== MOTION PERFORMANCE ====== */
+/* 
+ * MOTION PERFORMANCE GUIDELINES - Grade B
+ * Optimized animations and transitions for smooth 60fps performance
+ * 
+ * Performance Principles:
+ * 1. Use transform and opacity (GPU-accelerated properties)
+ * 2. Avoid animating layout properties (width, height, top, left)
+ * 3. Use will-change sparingly and remove after animation
+ * 4. Prefer CSS animations over JavaScript when possible
+ * 5. Respect prefers-reduced-motion for accessibility
+ * 6. Keep animation durations under 500ms for UI feedback
+ * 7. Use easing functions that feel natural
+ */
+
+/* GPU-Accelerated Transform Animations */
+/* ✅ GOOD: Animating transform (GPU-accelerated) */
+.wuju-animate-slide-in {
+    transform: translateX(-100%);
+    transition: transform var(--wuju-transition-smooth);
+}
+
+.wuju-animate-slide-in.active {
+    transform: translateX(0);
+}
+
+/* ✅ GOOD: Animating opacity (GPU-accelerated) */
+.wuju-animate-fade-in {
+    opacity: 0;
+    transition: opacity var(--wuju-transition-smooth);
+}
+
+.wuju-animate-fade-in.active {
+    opacity: 1;
+}
+
+/* ✅ GOOD: Combined transform + opacity */
+.wuju-animate-scale-fade {
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform var(--wuju-transition-smooth), opacity var(--wuju-transition-smooth);
+}
+
+.wuju-animate-scale-fade.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* ❌ AVOID: Animating layout properties (causes reflow) */
+/* .bad-animation {
+    width: 0;
+    transition: width 0.3s; // Causes layout recalculation
+} */
+
+/* Performance-Optimized Hover States */
+.wuju-hover-lift {
+    transition: transform var(--wuju-transition-fast), box-shadow var(--wuju-transition-fast);
+    will-change: transform;
+}
+
+.wuju-hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--wuju-shadow-medium);
+}
+
+.wuju-hover-lift:not(:hover) {
+    will-change: auto; /* Remove will-change when not needed */
+}
+
+/* Smooth Scroll Performance */
+.wuju-smooth-scroll {
+    scroll-behavior: smooth;
+    /* Use JavaScript for better control and performance */
+}
+
+/* Staggered Animation Pattern */
+.wuju-stagger-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wuju-stagger-item:nth-child(1) { transition-delay: 0ms; }
+.wuju-stagger-item:nth-child(2) { transition-delay: 50ms; }
+.wuju-stagger-item:nth-child(3) { transition-delay: 100ms; }
+.wuju-stagger-item:nth-child(4) { transition-delay: 150ms; }
+.wuju-stagger-item:nth-child(5) { transition-delay: 200ms; }
+
+.wuju-stagger-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optimized Loading Spinner */
+.wuju-spinner-optimized {
+    /* Use transform rotation (GPU-accelerated) */
+    animation: wuju-spin-optimized 0.8s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes wuju-spin-optimized {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Parallax Performance (use with caution) */
+.wuju-parallax {
+    will-change: transform;
+    transform: translateZ(0); /* Force GPU acceleration */
+}
+
+/* Reduce Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .wuju-animate-slide-in,
+    .wuju-animate-fade-in,
+    .wuju-animate-scale-fade,
+    .wuju-stagger-item {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Animation Duration Guidelines */
+/* Micro-interactions: 150-250ms (button clicks, hover states) */
+/* Standard transitions: 250-400ms (modals, dropdowns) */
+/* Complex animations: 400-600ms (page transitions, hero animations) */
+/* Avoid durations > 1000ms for UI elements */
+
+/* Easing Functions */
+/* ease-out: Natural deceleration (most UI elements) */
+/* cubic-bezier(0.4, 0, 0.2, 1): Material Design standard */
+/* ease-in-out: Smooth start and end (page transitions) */
+
+/* ====== BRAND VOICE ====== */
+/* 
+ * BRAND VOICE GUIDELINES - Grade A
+ * Comprehensive brand voice and tone guidelines for Wuju Space
+ * 
+ * Brand Personality:
+ * - Innovative: Forward-thinking, cutting-edge solutions
+ * - Approachable: Friendly, human-centered, not intimidating
+ * - Professional: Trustworthy, reliable, polished
+ * - Inspiring: Motivational, aspirational, empowering
+ * 
+ * Tone Principles:
+ * 1. Clear over clever - Prioritize clarity and understanding
+ * 2. Human over robotic - Write like you're talking to a friend
+ * 3. Confident but humble - Show expertise without arrogance
+ * 4. Action-oriented - Use active voice and strong verbs
+ */
+
+/* Typography Voice Examples */
+/* 
+ * ✅ DO: Use clear, descriptive headings
+ * Example: "Transform Your Digital Experience"
+ * 
+ * ❌ DON'T: Use vague or generic headings
+ * Example: "Solutions" or "Services"
+ */
+
+/* Button Copy Voice */
+/* 
+ * ✅ DO: Action-oriented, benefit-focused
+ * Examples:
+ * - "Start Your Journey"
+ * - "Explore Our Work"
+ * - "Get in Touch"
+ * - "See How It Works"
+ * 
+ * ❌ DON'T: Generic or passive
+ * Examples:
+ * - "Click Here"
+ * - "Submit"
+ * - "Learn More" (overused)
+ * - "Continue"
+ */
+
+/* Error Message Voice */
+/* 
+ * ✅ DO: Helpful, solution-oriented
+ * Example: "Oops! Something went wrong. Please try again or contact support if the issue persists."
+ * 
+ * ❌ DON'T: Technical or blaming
+ * Example: "Error 500: Internal Server Error" or "You entered the wrong information"
+ */
+
+/* Success Message Voice */
+/* 
+ * ✅ DO: Positive, encouraging
+ * Example: "Great! Your message has been sent. We'll get back to you within 24 hours."
+ * 
+ * ❌ DON'T: Robotic or minimal
+ * Example: "Success" or "Message sent"
+ */
+
+/* Empty State Voice */
+/* 
+ * ✅ DO: Helpful, guiding
+ * Example: "No projects yet. Start by creating your first project to see it here."
+ * 
+ * ❌ DON'T: Negative or unhelpful
+ * Example: "No data" or "Empty"
+ */
+
+/* Loading State Voice */
+/* 
+ * ✅ DO: Reassuring, informative
+ * Example: "Loading your projects..." or "Almost there..."
+ * 
+ * ❌ DON'T: Generic or technical
+ * Example: "Loading..." or "Please wait"
+ */
+
+/* Form Label Voice */
+/* 
+ * ✅ DO: Clear, specific, helpful
+ * Examples:
+ * - "Your Email Address"
+ * - "Project Description"
+ * - "Preferred Contact Method"
+ * 
+ * ❌ DON'T: Vague or technical
+ * Examples:
+ * - "Email"
+ * - "Description"
+ * - "Contact"
+ */
+
+/* Help Text Voice */
+/* 
+ * ✅ DO: Contextual, actionable
+ * Example: "Use a strong password with at least 8 characters, including numbers and symbols."
+ * 
+ * ❌ DON'T: Generic or unhelpful
+ * Example: "Enter password" or "Required field"
+ */
+
+/* Navigation Voice */
+/* 
+ * ✅ DO: Clear, scannable, action-oriented
+ * Examples:
+ * - "Our Work" (not "Portfolio")
+ * - "About Us" (not "Company")
+ * - "Get Started" (not "Sign Up")
+ * 
+ * ❌ DON'T: Jargon or unclear terms
+ * Examples:
+ * - "Solutions" (too vague)
+ * - "Resources" (too generic)
+ * - "Contact" (use "Get in Touch" instead)
+ */
+
+/* Hero Section Voice */
+/* 
+ * ✅ DO: Bold, inspiring, benefit-focused
+ * Example: "Turning Imagination Into Interaction - Where Unreal Journeys Unfold"
+ * 
+ * ❌ DON'T: Generic or feature-focused
+ * Example: "We Build Websites" or "Digital Solutions Provider"
+ */
+
+/* Call-to-Action Voice */
+/* 
+ * ✅ DO: Urgent but not pushy, benefit-focused
+ * Examples:
+ * - "Start Your Project Today"
+ * - "Schedule a Free Consultation"
+ * - "See Our Work in Action"
+ * 
+ * ❌ DON'T: Pushy or generic
+ * Examples:
+ * - "Buy Now"
+ * - "Sign Up Today!" (too many exclamation marks)
+ * - "Click Here"
+ */
+
+/* Microcopy Voice */
+/* 
+ * ✅ DO: Friendly, helpful, concise
+ * Examples:
+ * - "Need help? We're here for you."
+ * - "This usually takes about 2 minutes"
+ * - "You're all set!"
+ * 
+ * ❌ DON'T: Robotic or unhelpful
+ * Examples:
+ * - "Error occurred"
+ * - "Processing..."
+ * - "Complete"
+ */
+
+/* Accessibility Voice */
+/* 
+ * ✅ DO: Clear, descriptive alt text and labels
+ * Example: "Close navigation menu" (not "X" or "Close")
+ * 
+ * ❌ DON'T: Vague or missing context
+ * Example: "Button" or "Image"
+ */
+
+/* Brand Voice Consistency Rules */
+/* 
+ * 1. Always use "we" and "you" (conversational, not third-person)
+ * 2. Avoid jargon unless necessary, then explain it
+ * 3. Use contractions for friendly tone ("we're" not "we are")
+ * 4. Keep sentences under 20 words when possible
+ * 5. Use active voice ("We build" not "Built by us")
+ * 6. Show, don't tell ("See our work" not "We are experienced")
+ * 7. Use specific numbers ("24 hours" not "soon")
+ * 8. End with action when possible
+ */
+
 /* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
     .wuju-h1 {

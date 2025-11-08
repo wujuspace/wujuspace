@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wuju Style Guide - Visual Tokens Showcase</title>
+    <link rel="icon" type="image/x-icon" href="assets/Wuju Space.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Rubik:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/coreStyleGuide.css">
+    <style>
+        body {
+            background: var(--wuju-bg-light);
+            color: var(--wuju-text-light);
+            font-family: 'Rubik', sans-serif;
+            padding: var(--wuju-space-lg);
+            line-height: 1.6;
+        }
+
+        [data-theme="dark"] body {
+            background: var(--wuju-bg-dark);
+            color: var(--wuju-text-dark);
+        }
+
+        .style-guide-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .style-guide-header {
+            margin-bottom: var(--wuju-space-2xl);
+            padding-bottom: var(--wuju-space-lg);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] .style-guide-header {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .style-guide-header h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: var(--wuju-text-5xl);
+            font-weight: 800;
+            margin-bottom: var(--wuju-space-sm);
+            background: var(--wuju-accent-light);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        [data-theme="dark"] .style-guide-header h1 {
+            background: var(--wuju-accent-dark);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: var(--wuju-space-md);
+            right: var(--wuju-space-md);
+            z-index: 1000;
+        }
+
+        .section {
+            margin-bottom: var(--wuju-space-2xl);
+            padding: var(--wuju-space-lg);
+            background: var(--wuju-surface-light);
+            border-radius: var(--wuju-radius-lg);
+            box-shadow: var(--wuju-shadow-soft);
+        }
+
+        [data-theme="dark"] .section {
+            background: var(--wuju-surface-dark);
+        }
+
+        .section-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: var(--wuju-text-3xl);
+            font-weight: 800;
+            margin-bottom: var(--wuju-space-md);
+            color: var(--wuju-text-light);
+        }
+
+        [data-theme="dark"] .section-title {
+            color: var(--wuju-text-dark);
+        }
+
+        .section-subtitle {
+            font-size: var(--wuju-text-lg);
+            margin-bottom: var(--wuju-space-lg);
+            opacity: 0.8;
+        }
+
+        .token-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--wuju-space-md);
+            margin-bottom: var(--wuju-space-lg);
+        }
+
+        .token-card {
+            padding: var(--wuju-space-md);
+            border-radius: var(--wuju-radius-md);
+            background: var(--wuju-bg-light);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: transform var(--wuju-transition-fast), box-shadow var(--wuju-transition-fast);
+        }
+
+        [data-theme="dark"] .token-card {
+            background: var(--wuju-bg-dark);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .token-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--wuju-shadow-soft);
+        }
+
+        .token-preview {
+            width: 100%;
+            height: 80px;
+            border-radius: var(--wuju-radius-md);
+            margin-bottom: var(--wuju-space-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: var(--wuju-text-sm);
+        }
+
+        .token-name {
+            font-weight: 700;
+            font-size: var(--wuju-text-sm);
+            margin-bottom: var(--wuju-space-xs);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .token-value {
+            font-size: var(--wuju-text-xs);
+            opacity: 0.7;
+            font-family: 'Courier New', monospace;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: var(--wuju-space-sm);
+        }
+
+        .color-swatch {
+            aspect-ratio: 1;
+            border-radius: var(--wuju-radius-md);
+            display: flex;
+            align-items: flex-end;
+            padding: var(--wuju-space-xs);
+            font-size: var(--wuju-text-xs);
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .spacing-demo {
+            display: flex;
+            align-items: center;
+            gap: var(--wuju-space-sm);
+            margin-bottom: var(--wuju-space-md);
+        }
+
+        .spacing-box {
+            background: var(--wuju-accent-solid-light);
+            border-radius: var(--wuju-radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: var(--wuju-text-xs);
+        }
+
+        [data-theme="dark"] .spacing-box {
+            background: var(--wuju-accent-solid-dark);
+        }
+
+        .typography-demo {
+            margin-bottom: var(--wuju-space-lg);
+        }
+
+        .typography-sample {
+            margin-bottom: var(--wuju-space-md);
+            padding: var(--wuju-space-md);
+            background: var(--wuju-bg-light);
+            border-radius: var(--wuju-radius-md);
+            border-left: 4px solid var(--wuju-accent-solid-light);
+        }
+
+        [data-theme="dark"] .typography-sample {
+            background: var(--wuju-bg-dark);
+            border-left-color: var(--wuju-accent-solid-dark);
+        }
+
+        .radius-demo {
+            display: flex;
+            gap: var(--wuju-space-md);
+            flex-wrap: wrap;
+            margin-bottom: var(--wuju-space-md);
+        }
+
+        .radius-box {
+            width: 100px;
+            height: 100px;
+            background: var(--wuju-accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: var(--wuju-text-xs);
+        }
+
+        .shadow-demo {
+            display: flex;
+            gap: var(--wuju-space-lg);
+            flex-wrap: wrap;
+            margin-bottom: var(--wuju-space-md);
+        }
+
+        .shadow-box {
+            width: 150px;
+            height: 150px;
+            background: var(--wuju-surface-light);
+            border-radius: var(--wuju-radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--wuju-text-light);
+        }
+
+        [data-theme="dark"] .shadow-box {
+            background: var(--wuju-surface-dark);
+            color: var(--wuju-text-dark);
+        }
+
+        .animation-demo {
+            display: flex;
+            gap: var(--wuju-space-lg);
+            flex-wrap: wrap;
+            margin-bottom: var(--wuju-space-md);
+        }
+
+        .animation-box {
+            width: 120px;
+            height: 120px;
+            background: var(--wuju-accent-light);
+            border-radius: var(--wuju-radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .code-block {
+            background: var(--wuju-gray-900);
+            color: #f9fafb;
+            padding: var(--wuju-space-md);
+            border-radius: var(--wuju-radius-md);
+            font-family: 'Courier New', monospace;
+            font-size: var(--wuju-text-sm);
+            overflow-x: auto;
+            margin: var(--wuju-space-md) 0;
+        }
+
+        [data-theme="dark"] .code-block {
+            background: var(--wuju-gray-800);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: var(--wuju-radius-sm);
+            font-size: var(--wuju-text-xs);
+            font-weight: 700;
+            margin-left: var(--wuju-space-xs);
+        }
+
+        .badge-grade-c {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .badge-grade-b {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .badge-grade-a {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        [data-theme="dark"] .badge-grade-c {
+            background: rgba(217, 119, 6, 0.2);
+            color: #fbbf24;
+        }
+
+        [data-theme="dark"] .badge-grade-b {
+            background: rgba(37, 99, 235, 0.2);
+            color: #60a5fa;
+        }
+
+        [data-theme="dark"] .badge-grade-a {
+            background: rgba(5, 150, 105, 0.2);
+            color: #34d399;
+        }
+    </style>
+</head>
+<body>
+    <button class="wuju-btn wuju-btn-primary theme-toggle" id="theme-switcher">Toggle Theme</button>
+
+    <div class="style-guide-container">
+        <div class="style-guide-header">
+            <h1>Wuju Style Guide</h1>
+            <p class="section-subtitle">Comprehensive design system tokens and guidelines</p>
+        </div>
+
+        <!-- Visual Tokens Section -->
+        <section class="section">
+            <h2 class="section-title">
+                Visual Tokens
+                <span class="badge badge-grade-c">Grade C</span>
+            </h2>
+            <p class="section-subtitle">Comprehensive visual design tokens for consistent UI/UX</p>
+
+            <!-- Color Palette -->
+            <h3 class="wuju-h3" style="margin-top: var(--wuju-space-lg);">Color Palette</h3>
+            <div class="token-grid">
+                <div class="token-card">
+                    <div class="token-preview" style="background: var(--wuju-bg-light); color: var(--wuju-text-light); border: 1px solid rgba(0,0,0,0.1);">
+                        Background Light
+                    </div>
+                    <div class="token-name">--wuju-bg-light</div>
+                    <div class="token-value">#f9fafc</div>
+                </div>
+                <div class="token-card">
+                    <div class="token-preview" style="background: var(--wuju-bg-dark); color: var(--wuju-text-dark);">
+                        Background Dark
+                    </div>
+                    <div class="token-name">--wuju-bg-dark</div>
+                    <div class="token-value">#0f1014</div>
+                </div>
+                <div class="token-card">
+                    <div class="token-preview" style="background: var(--wuju-accent-solid-light); color: white;">
+                        Accent Light
+                    </div>
+                    <div class="token-name">--wuju-accent-solid-light</div>
+                    <div class="token-value">#8b5cf6</div>
+                </div>
+                <div class="token-card">
+                    <div class="token-preview" style="background: var(--wuju-accent-solid-dark); color: white;">
+                        Accent Dark
+                    </div>
+                    <div class="token-name">--wuju-accent-solid-dark</div>
+                    <div class="token-value">#60a5fa</div>
+                </div>
+                <div class="token-card">
+                    <div class="token-preview" style="background: var(--wuju-surface-light); color: var(--wuju-text-light); border: 1px solid rgba(0,0,0,0.1);">
+                        Surface Light
+                    </div>
+                    <div class="token-name">--wuju-surface-light</div>
+                    <div class="token-value">#ffffff</div>
+                </div>
+                <div class="token-card">
+                    <div class="token-preview" style="background: var(--wuju-surface-dark); color: var(--wuju-text-dark);">
+                        Surface Dark
+                    </div>
+                    <div class="token-name">--wuju-surface-dark</div>
+                    <div class="token-value">#1a1b21</div>
+                </div>
+            </div>
+
+            <!-- Semantic Colors -->
+            <h3 class="wuju-h3" style="margin-top: var(--wuju-space-lg);">Semantic Colors</h3>
+            <div class="color-palette">
+                <div class="color-swatch" style="background: var(--wuju-success);">
+                    Success
+                </div>
+                <div class="color-swatch" style="background: var(--wuju-error);">
+                    Error
+                </div>
+                <div class="color-swatch" style="background: var(--wuju-warning);">
+                    Warning
+                </div>
+                <div class="color-swatch" style="background: var(--wuju-info);">
+                    Info
+                </div>
+            </div>
+
+            <!-- Spacing Scale -->
+            <h3 class="wuju-h3" style="margin-top: var(--wuju-space-lg);">Spacing Scale (8-point grid)</h3>
+            <div class="spacing-demo">
+                <div class="spacing-box" style="width: var(--wuju-space-xs); height: var(--wuju-space-xs);">XS</div>
+                <div class="spacing-box" style="width: var(--wuju-space-sm); height: var(--wuju-space-sm);">SM</div>
+                <div class="spacing-box" style="width: var(--wuju-space-md); height: var(--wuju-space-md);">MD</div>
+                <div class="spacing-box" style="width: var(--wuju-space-lg); height: var(--wuju-space-lg);">LG</div>
+                <div class="spacing-box" style="width: var(--wuju-space-xl); height: var(--wuju-space-xl);">XL</div>
+                <div class="spacing-box" style="width: var(--wuju-space-2xl); height: var(--wuju-space-2xl);">2XL</div>
+            </div>
+            <div class="code-block">
+--wuju-space-xs: 8px
+--wuju-space-sm: 16px
+--wuju-space-md: 24px
+--wuju-space-lg: 40px
+--wuju-space-xl: 60px
+--wuju-space-2xl: 80px
+            </div>
+
+            <!-- Typography -->
+            <h3 class="wuju-h3" style="margin-top: var(--wuju-space-lg);">Typography Scale</h3>
+            <div class="typography-demo">
+                <div class="typography-sample" style="font-size: var(--wuju-text-xs);">
+                    <strong>XS:</strong> The quick brown fox jumps over the lazy dog
+                </div>
+                <div class="typography-sample" style="font-size: var(--wuju-text-sm);">
+                    <strong>SM:</strong> The quick brown fox jumps over the lazy dog
+                </div>
+                <div class="typography-sample" style="font-size: var(--wuju-text-base);">
+                    <strong>Base:</strong> The quick brown fox jumps over the lazy dog
+                </div>
+                <div class="typography-sample" style="font-size: var(--wuju-text-lg);">
+                    <strong>LG:</strong> The quick brown fox jumps over the lazy dog
+                </div>
+                <div class="typography-sample" style="font-size: var(--wuju-text-xl);">
+                    <strong>XL:</strong> The quick brown fox jumps over the lazy dog
+                </div>
+                <div class="typography-sample" style="font-size: var(--wuju-text-2xl); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;">
+                    <strong>2XL:</strong> The quick brown fox jumps over the lazy dog
+                </div>
+                <div class="typography-sample" style="font-size: var(--wuju-text-3xl); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;">
+                    <strong>3XL:</strong> The quick brown fox jumps over the lazy dog
+                </div>
+            </div>
+
+            <!-- Border Radius -->
+            <h3 class="wuju-h3" style="margin-top: var(--wuju-space-lg);">Border Radius</h3>
+            <div class="radius-demo">
+                <div class="radius-box" style="border-radius: var(--wuju-radius-sm);">SM</div>
+                <div class="radius-box" style="border-radius: var(--wuju-radius-md);">MD</div>
+                <div class="radius-box" style="border-radius: var(--wuju-radius-lg);">LG</div>
+                <div class="radius-box" style="border-radius: var(--wuju-radius-xl);">XL</div>
+            </div>
+
+            <!-- Shadows -->
+            <h3 class="wuju-h3" style="margin-top: var(--wuju-space-lg);">Shadow Elevation</h3>
+            <div class="shadow-demo">
+                <div class="shadow-box" style="box-shadow: var(--wuju-shadow-soft);">
+                    Soft Shadow
+                </div>
+                <div class="shadow-box" style="box-shadow: var(--wuju-shadow-medium);">
+                    Medium Shadow
+                </div>
+                <div class="shadow-box" style="box-shadow: var(--wuju-shadow-strong);">
+                    Strong Shadow
+                </div>
+            </div>
+        </section>
+
+        <!-- Motion Performance Section -->
+        <section class="section">
+            <h2 class="section-title">
+                Motion Performance
+                <span class="badge badge-grade-b">Grade B</span>
+            </h2>
+            <p class="section-subtitle">Optimized animations and transitions for smooth 60fps performance</p>
+
+            <h3 class="wuju-h3" style="margin-top: var(--wuju-space-lg);">Animation Examples</h3>
+            <div class="animation-demo">
+                <div class="animation-box wuju-animate-fade-in" onclick="this.classList.toggle('active')">
+                    Fade In
+                </div>
+                <div class="animation-box wuju-animate-scale-fade" onclick="this.classList.toggle('active')">
+                    Scale Fade
+                </div>
+                <div class="animation-box wuju-hover-lift">
+                    Hover Lift
+                </div>
+                <div class="animation-box wuju-spinner-optimized" style="background: transparent; border: 3px solid var(--wuju-accent-solid-light); border-top-color: transparent;">
+                </div>
+            </div>
+
+            <div class="code-block">
+/* ✅ GOOD: GPU-accelerated properties */
+.wuju-animate-fade-in {
+    opacity: 0;
+    transition: opacity var(--wuju-transition-smooth);
+}
+
+.wuju-animate-fade-in.active {
+    opacity: 1;
+}
+
+/* ❌ AVOID: Layout properties */
+.bad-animation {
+    width: 0;
+    transition: width 0.3s; /* Causes reflow */
+}
+            </div>
+        </section>
+
+        <!-- Brand Voice Section -->
+        <section class="section">
+            <h2 class="section-title">
+                Brand Voice
+                <span class="badge badge-grade-a">Grade A</span>
+            </h2>
+            <p class="section-subtitle">Comprehensive brand voice and tone guidelines</p>
+
+            <h3 class="wuju-h3" style="margin-top: var(--wuju-space-lg);">Voice Examples</h3>
+            
+            <div class="typography-sample">
+                <strong>✅ DO:</strong> "Start Your Journey" - Action-oriented, benefit-focused
+            </div>
+            <div class="typography-sample" style="opacity: 0.6;">
+                <strong>❌ DON'T:</strong> "Click Here" - Generic, passive
+            </div>
+
+            <div class="typography-sample">
+                <strong>✅ DO:</strong> "Great! Your message has been sent. We'll get back to you within 24 hours." - Positive, encouraging, specific
+            </div>
+            <div class="typography-sample" style="opacity: 0.6;">
+                <strong>❌ DON'T:</strong> "Success" - Robotic, minimal
+            </div>
+
+            <div class="typography-sample">
+                <strong>✅ DO:</strong> "No projects yet. Start by creating your first project to see it here." - Helpful, guiding
+            </div>
+            <div class="typography-sample" style="opacity: 0.6;">
+                <strong>❌ DON'T:</strong> "No data" - Negative, unhelpful
+            </div>
+
+            <h3 class="wuju-h3" style="margin-top: var(--wuju-space-lg);">Brand Personality</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: var(--wuju-space-sm); margin-bottom: var(--wuju-space-xs); background: var(--wuju-bg-light); border-radius: var(--wuju-radius-md);">
+                    <strong>Innovative:</strong> Forward-thinking, cutting-edge solutions
+                </li>
+                <li style="padding: var(--wuju-space-sm); margin-bottom: var(--wuju-space-xs); background: var(--wuju-bg-light); border-radius: var(--wuju-radius-md);">
+                    <strong>Approachable:</strong> Friendly, human-centered, not intimidating
+                </li>
+                <li style="padding: var(--wuju-space-sm); margin-bottom: var(--wuju-space-xs); background: var(--wuju-bg-light); border-radius: var(--wuju-radius-md);">
+                    <strong>Professional:</strong> Trustworthy, reliable, polished
+                </li>
+                <li style="padding: var(--wuju-space-sm); margin-bottom: var(--wuju-space-xs); background: var(--wuju-bg-light); border-radius: var(--wuju-radius-md);">
+                    <strong>Inspiring:</strong> Motivational, aspirational, empowering
+                </li>
+            </ul>
+        </section>
+
+        <!-- Component Showcase -->
+        <section class="section">
+            <h2 class="section-title">Component Showcase</h2>
+            <p class="section-subtitle">Interactive examples of Wuju components</p>
+
+            <h3 class="wuju-h3" style="margin-top: var(--wuju-space-lg);">Buttons</h3>
+            <div style="margin-bottom: var(--wuju-space-lg);">
+                <button class="wuju-btn wuju-btn-primary">Primary Button</button>
+                <button class="wuju-btn wuju-btn-secondary">Secondary Button</button>
+                <button class="wuju-btn wuju-btn-tertiary">Tertiary Button</button>
+            </div>
+
+            <h3 class="wuju-h3" style="margin-top: var(--wuju-space-lg);">Cards</h3>
+            <div class="wuju-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div class="wuju-card interactive">
+                    <h4 class="wuju-h4">Interactive Card</h4>
+                    <p>Hover over this card to see the animation.</p>
+                </div>
+                <div class="wuju-card">
+                    <h4 class="wuju-h4">Standard Card</h4>
+                    <p>This is a standard card without hover effects.</p>
+                </div>
+            </div>
+
+            <h3 class="wuju-h3" style="margin-top: var(--wuju-space-lg);">Form Elements</h3>
+            <div style="max-width: 500px;">
+                <div class="wuju-form-group">
+                    <label class="wuju-form-label">Your Email Address</label>
+                    <input type="email" class="wuju-input" placeholder="you@example.com">
+                </div>
+                <div class="wuju-form-group">
+                    <label class="wuju-form-label">Project Description</label>
+                    <textarea class="wuju-textarea" placeholder="Tell us about your project..."></textarea>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/theme-switcher.js"></script>
+    <script>
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add active class to fade-in elements after a delay
+            setTimeout(() => {
+                document.querySelectorAll('.wuju-animate-fade-in').forEach(el => {
+                    el.classList.add('active');
+                });
+            }, 100);
+
+            // Stagger animation demo
+            const staggerItems = document.querySelectorAll('.wuju-stagger-item');
+            if (staggerItems.length > 0) {
+                staggerItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 100);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
