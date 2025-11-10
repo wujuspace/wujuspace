@@ -5,17 +5,28 @@
 
 /* ====== DESIGN TOKENS ====== */
 :root {
+    /* Core Gradient Colors - New Style Guide */
+    --wuju-electric-blue: #2EB5E5;
+    --wuju-soft-violet: #6C5CE7;
+    --wuju-orchid-pink: #F067B4;
+    --wuju-highlight-cyan: #00E0FF;
+    --wuju-soft-lavender: #C7BFFF;
+    --wuju-icy-blue: #D8F2FF;
+    --wuju-warm-lilac: #E5C4F9;
+    --wuju-text-primary: #1B1F24;
+    --wuju-text-secondary: #6E7681;
+    
     /* Color Palette - Light Mode */
-    --wuju-bg-light: #f9fafc;
-    --wuju-text-light: #1b1b1d;
-    --wuju-accent-light: linear-gradient(135deg, #8b5cf6, #3b82f6);
-    --wuju-accent-solid-light: #8b5cf6;
-    --wuju-surface-light: #ffffff;
+    --wuju-bg-light: #F9FAFB;
+    --wuju-text-light: #1B1F24;
+    --wuju-accent-light: linear-gradient(135deg, #2EB5E5 0%, #6C5CE7 50%, #F067B4 100%);
+    --wuju-accent-solid-light: #6C5CE7;
+    --wuju-surface-light: #FFFFFF;
     
     /* Color Palette - Dark Mode */
     --wuju-bg-dark: #0f1014;
     --wuju-text-dark: #e8e8f0;
-    --wuju-accent-dark: linear-gradient(135deg, #60a5fa, #a855f7);
+    --wuju-accent-dark: linear-gradient(135deg, #2EB5E5 0%, #6C5CE7 50%, #F067B4 100%);
     --wuju-accent-solid-dark: #60a5fa;
     --wuju-surface-dark: #1a1b21;
     
@@ -104,14 +115,14 @@
 /* ====== TYPOGRAPHY ====== */
 /* Font Families */
 .wuju-heading {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.2;
 }
 
 .wuju-body {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Prata', serif;
     font-weight: 400;
     line-height: 1.6;
 }
@@ -144,7 +155,8 @@
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-    font-weight: 800;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
 }
 
 [data-theme="dark"] .wuju-gradient-text {
@@ -158,8 +170,8 @@
     border: none;
     padding: 12px 24px;
     border-radius: var(--wuju-radius-md);
-    font-weight: 700;
-    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
     font-size: var(--wuju-text-base);
     transition: all var(--wuju-transition-fast);
     cursor: pointer;
@@ -845,7 +857,7 @@ a[role="button"] {
     width: 100%;
     padding: 12px 16px;
     font-size: var(--wuju-text-base);
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: var(--wuju-text-light);
     background: var(--wuju-surface-light);
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -923,7 +935,7 @@ a[role="button"] {
     width: 100%;
     padding: 12px 16px;
     font-size: var(--wuju-text-base);
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: var(--wuju-text-light);
     background: var(--wuju-surface-light);
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -1104,7 +1116,7 @@ a[role="button"] {
     padding: 12px 16px;
     padding-right: 40px;
     font-size: var(--wuju-text-base);
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: var(--wuju-text-light);
     background: var(--wuju-surface-light);
     border: 1px solid rgba(0, 0, 0, 0.1);
