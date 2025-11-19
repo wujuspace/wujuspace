@@ -139,10 +139,11 @@
 
 .who-block-title {
     font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-dark);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     margin: 0;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .who-block-description {
@@ -182,10 +183,11 @@
 
 .why-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-dark);
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
     margin-bottom: 1.5rem;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .why-subtitle {
@@ -239,20 +241,22 @@
 
 .why-card-number {
     font-size: clamp(3rem, 5vw, 4rem);
-    font-weight: 700;
+    font-weight: 400;
     color: var(--text-dark);
     opacity: 0.15;
     line-height: 1;
-    letter-spacing: -0.05em;
+    letter-spacing: 0;
     margin-bottom: 1rem;
+    font-family: 'Prata', serif;
 }
 
 .why-card-title {
     font-size: clamp(1.5rem, 2.5vw, 2rem);
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-dark);
     margin-bottom: 1rem;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .why-card-description {
@@ -286,11 +290,12 @@
 
 .how-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-dark);
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
     margin-bottom: 1rem;
     text-align: left;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .how-subtitle {
@@ -331,16 +336,19 @@
 
 .step-number {
     font-size: clamp(1.5rem, 2.5vw, 2rem);
-    font-weight: 700;
+    font-weight: 400;
     min-width: 60px;
     color: var(--text-dark);
+    font-family: 'Prata', serif;
+    letter-spacing: 0;
 }
 
 .step-title {
     font-size: clamp(1.25rem, 2vw, 1.5rem);
     font-weight: 600;
     flex: 1;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
+    font-family: 'Open Sans', sans-serif;
     color: var(--text-dark);
 }
 
@@ -512,11 +520,12 @@
 
 .team-name {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-dark);
     margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     transition: color 0.3s ease;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .team-card:hover .team-name {

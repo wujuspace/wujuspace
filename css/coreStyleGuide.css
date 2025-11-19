@@ -1,0 +1,1669 @@
+﻿/* ============================================
+   WUJU CORE STYLE GUIDE
+   Design System Tokens and Components
+   ============================================ */
+
+/* ====== DESIGN TOKENS ====== */
+:root {
+    /* Core Gradient Colors - New Style Guide */
+    --wuju-electric-blue: #2EB5E5;
+    --wuju-soft-violet: #6C5CE7;
+    --wuju-orchid-pink: #F067B4;
+    --wuju-highlight-cyan: #00E0FF;
+    --wuju-soft-lavender: #C7BFFF;
+    --wuju-icy-blue: #D8F2FF;
+    --wuju-warm-lilac: #E5C4F9;
+    --wuju-text-primary: #1B1F24;
+    --wuju-text-secondary: #6E7681;
+    
+    /* Color Palette - Light Mode */
+    --wuju-bg-light: #F9FAFB;
+    --wuju-text-light: #1B1F24;
+    --wuju-accent-light: linear-gradient(135deg, #2EB5E5 0%, #6C5CE7 50%, #F067B4 100%);
+    --wuju-accent-solid-light: #6C5CE7;
+    --wuju-surface-light: #FFFFFF;
+    
+    /* Color Palette - Dark Mode */
+    --wuju-bg-dark: #0f1014;
+    --wuju-text-dark: #e8e8f0;
+    --wuju-accent-dark: linear-gradient(135deg, #2EB5E5 0%, #6C5CE7 50%, #F067B4 100%);
+    --wuju-accent-solid-dark: #60a5fa;
+    --wuju-surface-dark: #1a1b21;
+    
+    /* Spacing Scale (8-point grid) */
+    --wuju-space-xs: 8px;
+    --wuju-space-sm: 16px;
+    --wuju-space-md: 24px;
+    --wuju-space-lg: 40px;
+    --wuju-space-xl: 60px;
+    --wuju-space-2xl: 80px;
+    
+    /* Border Radius */
+    --wuju-radius-xl: 24px;
+    --wuju-radius-lg: 16px;
+    --wuju-radius-md: 8px;
+    --wuju-radius-sm: 4px;
+    
+    /* Transitions */
+    --wuju-transition-fast: 0.25s ease;
+    --wuju-transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Shadows */
+    --wuju-shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.1);
+    --wuju-shadow-medium: 0 12px 32px rgba(0, 0, 0, 0.2);
+    --wuju-shadow-strong: 0 20px 48px rgba(0, 0, 0, 0.3);
+    
+    /* Typography Scale */
+    --wuju-text-xs: 0.75rem;    /* 12px */
+    --wuju-text-sm: 0.875rem;   /* 14px */
+    --wuju-text-base: 1rem;     /* 16px */
+    --wuju-text-lg: 1.125rem;   /* 18px */
+    --wuju-text-xl: 1.25rem;    /* 20px */
+    --wuju-text-2xl: 1.5rem;   /* 24px */
+    --wuju-text-3xl: 2rem;     /* 32px */
+    --wuju-text-4xl: 2.5rem;   /* 40px */
+    --wuju-text-5xl: 3.5rem;   /* 56px */
+    
+    /* Animations */
+    --wuju-marquee-speed: 30s;
+    --wuju-float-duration: 3s;
+    
+    /* Layout */
+    --wuju-container-max: 1200px;
+    --wuju-grid-gap: 24px;
+    
+    /* Z-index Scale */
+    --wuju-z-base: 1;
+    --wuju-z-dropdown: 100;
+    --wuju-z-sticky: 200;
+    --wuju-z-modal: 300;
+    --wuju-z-tooltip: 400;
+    
+    /* Accessibility Tokens */
+    --wuju-touch-target-min: 44px; /* WCAG 2.5.5 - Minimum touch target size */
+    --wuju-focus-outline-width: 2px;
+    --wuju-focus-outline-offset: 2px;
+    --wuju-focus-ring-color: #3b82f6;
+    --wuju-focus-ring-color-dark: #60a5fa;
+    
+    /* Color Contrast Ratios (WCAG AA/AAA compliant) */
+    /* Light mode: Text on background - 4.5:1 (AA), 7:1 (AAA) */
+    /* Dark mode: Text on background - 4.5:1 (AA), 7:1 (AAA) */
+    
+    /* Icon Sizes */
+    --wuju-icon-xs: 12px;
+    --wuju-icon-sm: 16px;
+    --wuju-icon-md: 20px;
+    --wuju-icon-lg: 24px;
+    --wuju-icon-xl: 32px;
+    
+    /* Icon Spacing */
+    --wuju-icon-spacing-sm: 4px;
+    --wuju-icon-spacing-md: 8px;
+    --wuju-icon-spacing-lg: 12px;
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+    --wuju-bg-light: var(--wuju-bg-dark);
+    --wuju-text-light: var(--wuju-text-dark);
+    --wuju-accent-light: var(--wuju-accent-dark);
+    --wuju-accent-solid-light: var(--wuju-accent-solid-dark);
+    --wuju-surface-light: var(--wuju-surface-dark);
+}
+
+/* ====== TYPOGRAPHY ====== */
+/* Font Families */
+.wuju-heading {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+.wuju-body {
+    font-family: 'Prata', serif;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* Heading Sizes */
+.wuju-h1 {
+    font-size: var(--wuju-text-5xl);
+    margin-bottom: var(--wuju-space-sm);
+}
+
+.wuju-h2 {
+    font-size: var(--wuju-text-3xl);
+    margin-top: var(--wuju-space-xl);
+    margin-bottom: var(--wuju-space-md);
+}
+
+.wuju-h3 {
+    font-size: var(--wuju-text-xl);
+    margin-bottom: var(--wuju-space-sm);
+}
+
+.wuju-h4 {
+    font-size: var(--wuju-text-lg);
+    margin-bottom: var(--wuju-space-sm);
+}
+
+/* Gradient Text */
+.wuju-gradient-text {
+    background: var(--wuju-accent-light);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+}
+
+[data-theme="dark"] .wuju-gradient-text {
+    background: var(--wuju-accent-dark);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+/* ====== BUTTONS ====== */
+.wuju-btn {
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--wuju-radius-md);
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--wuju-text-base);
+    transition: all var(--wuju-transition-fast);
+    cursor: pointer;
+    display: inline-block;
+    margin-right: var(--wuju-space-sm);
+    margin-bottom: var(--wuju-space-sm);
+    text-decoration: none;
+}
+
+/* Primary Button */
+.wuju-btn-primary {
+    background: var(--wuju-accent-light);
+    color: white;
+}
+
+.wuju-btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: var(--wuju-shadow-soft);
+}
+
+[data-theme="dark"] .wuju-btn-primary {
+    background: var(--wuju-accent-dark);
+}
+
+/* Secondary Button */
+.wuju-btn-secondary {
+    background: transparent;
+    color: var(--wuju-accent-solid-light);
+    border: 2px solid var(--wuju-accent-solid-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.wuju-btn-secondary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--wuju-accent-light);
+    opacity: 0;
+    transition: opacity var(--wuju-transition-fast);
+    z-index: 0;
+}
+
+.wuju-btn-secondary:hover::before {
+    opacity: 0.1;
+}
+
+.wuju-btn-secondary:hover {
+    transform: translateY(-2px);
+}
+
+[data-theme="dark"] .wuju-btn-secondary {
+    color: var(--wuju-accent-solid-dark);
+    border-color: var(--wuju-accent-solid-dark);
+}
+
+[data-theme="dark"] .wuju-btn-secondary::before {
+    background: var(--wuju-accent-dark);
+}
+
+/* Tertiary Button */
+.wuju-btn-tertiary {
+    background: transparent;
+    color: var(--wuju-text-light);
+    border: none;
+    position: relative;
+}
+
+.wuju-btn-tertiary::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 24px;
+    right: 24px;
+    height: 2px;
+    background: var(--wuju-accent-light);
+    transform: scaleX(0);
+    transition: transform var(--wuju-transition-fast);
+}
+
+.wuju-btn-tertiary:hover::after {
+    transform: scaleX(1);
+}
+
+.wuju-btn-tertiary:hover {
+    color: var(--wuju-accent-solid-light);
+}
+
+[data-theme="dark"] .wuju-btn-tertiary {
+    color: var(--wuju-text-dark);
+}
+
+[data-theme="dark"] .wuju-btn-tertiary:hover {
+    color: var(--wuju-accent-solid-dark);
+}
+
+[data-theme="dark"] .wuju-btn-tertiary::after {
+    background: var(--wuju-accent-dark);
+}
+
+/* ====== CARDS ====== */
+.wuju-card {
+    background: var(--wuju-surface-light);
+    border-radius: var(--wuju-radius-lg);
+    padding: var(--wuju-space-md);
+    box-shadow: var(--wuju-shadow-soft);
+    transition: transform var(--wuju-transition-fast), box-shadow var(--wuju-transition-fast);
+    margin-bottom: var(--wuju-space-md);
+}
+
+.wuju-card.interactive {
+    cursor: pointer;
+}
+
+[data-theme="dark"] .wuju-card {
+    background: var(--wuju-surface-dark);
+}
+
+.wuju-card.interactive:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: var(--wuju-shadow-medium);
+}
+
+/* ====== GRID SYSTEM ====== */
+.wuju-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--wuju-grid-gap);
+    margin-bottom: var(--wuju-space-lg);
+}
+
+.wuju-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--wuju-grid-gap);
+    margin-bottom: var(--wuju-space-lg);
+}
+
+/* ====== ANIMATIONS ====== */
+@keyframes wuju-float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes wuju-marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.wuju-float {
+    animation: wuju-float var(--wuju-float-duration) ease-in-out infinite;
+}
+
+.wuju-marquee {
+    display: flex;
+    animation: wuju-marquee var(--wuju-marquee-speed) linear infinite;
+}
+
+.wuju-marquee:hover {
+    animation-play-state: paused;
+}
+
+/* ====== ACCESSIBILITY ⭐ HIGH PRIORITY ====== */
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Focus States - Keyboard Navigation */
+.wuju-focus-visible,
+.wuju-btn:focus-visible,
+.wuju-card:focus-visible,
+.wuju-link:focus-visible,
+.wuju-input:focus-visible,
+.wuju-textarea:focus-visible,
+.wuju-select:focus-visible {
+    outline: var(--wuju-focus-outline-width) solid var(--wuju-focus-ring-color);
+    outline-offset: var(--wuju-focus-outline-offset);
+    border-radius: var(--wuju-radius-sm);
+}
+
+[data-theme="dark"] .wuju-focus-visible,
+[data-theme="dark"] .wuju-btn:focus-visible,
+[data-theme="dark"] .wuju-card:focus-visible,
+[data-theme="dark"] .wuju-link:focus-visible,
+[data-theme="dark"] .wuju-input:focus-visible,
+[data-theme="dark"] .wuju-textarea:focus-visible,
+[data-theme="dark"] .wuju-select:focus-visible {
+    outline-color: var(--wuju-focus-ring-color-dark);
+}
+
+/* Remove default focus outline for mouse users, keep for keyboard */
+.wuju-btn:focus:not(:focus-visible),
+.wuju-card:focus:not(:focus-visible),
+.wuju-link:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Minimum Touch Target Sizes (WCAG 2.5.5) */
+.wuju-btn,
+.wuju-card.interactive,
+.wuju-link,
+button,
+a[role="button"] {
+    min-height: var(--wuju-touch-target-min);
+    min-width: var(--wuju-touch-target-min);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Screen Reader Only Content */
+.wuju-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.wuju-sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+/* Skip Link for Keyboard Navigation */
+.wuju-skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--wuju-accent-solid-light);
+    color: white;
+    padding: var(--wuju-space-sm);
+    text-decoration: none;
+    z-index: 1000;
+    border-radius: var(--wuju-radius-md);
+}
+
+.wuju-skip-link:focus {
+    top: 0;
+}
+
+/* Color Contrast Compliance */
+/* All text colors meet WCAG AA (4.5:1) minimum contrast ratio */
+/* Large text (18px+) meets WCAG AAA (3:1) for enhanced readability */
+
+/* ====== INTERACTIVE STATES MATRIX ====== */
+
+/* Button States */
+.wuju-btn {
+    /* Default State */
+    position: relative;
+    user-select: none;
+}
+
+.wuju-btn:hover {
+    /* Hover State */
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.wuju-btn:active {
+    /* Active State */
+    transform: translateY(0) scale(0.98);
+    opacity: 0.95;
+}
+
+.wuju-btn:focus-visible {
+    /* Focus State */
+    outline: var(--wuju-focus-outline-width) solid var(--wuju-focus-ring-color);
+    outline-offset: var(--wuju-focus-outline-offset);
+}
+
+.wuju-btn:disabled,
+.wuju-btn[disabled] {
+    /* Disabled State */
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none;
+}
+
+/* Card States */
+.wuju-card {
+    /* Default State */
+    position: relative;
+}
+
+.wuju-card.interactive:hover {
+    /* Hover State */
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: var(--wuju-shadow-medium);
+}
+
+.wuju-card.interactive:active {
+    /* Active State */
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: var(--wuju-shadow-soft);
+}
+
+.wuju-card.interactive:focus-visible {
+    /* Focus State */
+    outline: var(--wuju-focus-outline-width) solid var(--wuju-focus-ring-color);
+    outline-offset: var(--wuju-focus-outline-offset);
+}
+
+/* Link States */
+.wuju-link {
+    color: var(--wuju-accent-solid-light);
+    text-decoration: none;
+    transition: all var(--wuju-transition-fast);
+    position: relative;
+    display: inline-block;
+}
+
+.wuju-link:hover {
+    /* Hover State */
+    color: var(--wuju-accent-solid-dark);
+    text-decoration: underline;
+}
+
+.wuju-link:active {
+    /* Active State */
+    transform: scale(0.98);
+}
+
+.wuju-link:focus-visible {
+    /* Focus State */
+    outline: var(--wuju-focus-outline-width) solid var(--wuju-focus-ring-color);
+    outline-offset: var(--wuju-focus-outline-offset);
+    border-radius: var(--wuju-radius-sm);
+}
+
+.wuju-link:visited {
+    /* Visited State */
+    opacity: 0.8;
+}
+
+[data-theme="dark"] .wuju-link {
+    color: var(--wuju-accent-solid-dark);
+}
+
+[data-theme="dark"] .wuju-link:hover {
+    color: var(--wuju-accent-solid-light);
+}
+
+/* ====== ICON SYSTEM ====== */
+
+/* Recommended: Lucide Icons (https://lucide.dev) */
+/* Alternative: Heroicons, Feather Icons, Material Icons */
+
+.wuju-icon {
+    display: inline-block;
+    flex-shrink: 0;
+    vertical-align: middle;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Icon Sizes */
+.wuju-icon-xs {
+    width: var(--wuju-icon-xs);
+    height: var(--wuju-icon-xs);
+}
+
+.wuju-icon-sm {
+    width: var(--wuju-icon-sm);
+    height: var(--wuju-icon-sm);
+}
+
+.wuju-icon-md {
+    width: var(--wuju-icon-md);
+    height: var(--wuju-icon-md);
+}
+
+.wuju-icon-lg {
+    width: var(--wuju-icon-lg);
+    height: var(--wuju-icon-lg);
+}
+
+.wuju-icon-xl {
+    width: var(--wuju-icon-xl);
+    height: var(--wuju-icon-xl);
+}
+
+/* Icon Colors */
+.wuju-icon {
+    color: currentColor;
+}
+
+.wuju-icon-primary {
+    color: var(--wuju-accent-solid-light);
+}
+
+[data-theme="dark"] .wuju-icon-primary {
+    color: var(--wuju-accent-solid-dark);
+}
+
+.wuju-icon-muted {
+    opacity: 0.6;
+}
+
+.wuju-icon-success {
+    color: #10b981;
+}
+
+.wuju-icon-error {
+    color: #ef4444;
+}
+
+.wuju-icon-warning {
+    color: #f59e0b;
+}
+
+.wuju-icon-info {
+    color: var(--wuju-accent-solid-light);
+}
+
+/* Icon with Text Spacing */
+.wuju-icon-text {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wuju-icon-spacing-md);
+}
+
+.wuju-icon-text-sm {
+    gap: var(--wuju-icon-spacing-sm);
+}
+
+.wuju-icon-text-lg {
+    gap: var(--wuju-icon-spacing-lg);
+}
+
+/* Icon Button */
+.wuju-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--wuju-touch-target-min);
+    min-height: var(--wuju-touch-target-min);
+    padding: var(--wuju-space-xs);
+    border-radius: var(--wuju-radius-md);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all var(--wuju-transition-fast);
+    color: var(--wuju-text-light);
+}
+
+.wuju-icon-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.wuju-icon-btn:active {
+    transform: scale(0.95);
+}
+
+.wuju-icon-btn:focus-visible {
+    outline: var(--wuju-focus-outline-width) solid var(--wuju-focus-ring-color);
+    outline-offset: var(--wuju-focus-outline-offset);
+}
+
+[data-theme="dark"] .wuju-icon-btn {
+    color: var(--wuju-text-dark);
+}
+
+[data-theme="dark"] .wuju-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ====== LOADING & EMPTY STATES ====== */
+
+/* Skeleton Loader */
+.wuju-skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--wuju-surface-light) 0%,
+        rgba(0, 0, 0, 0.05) 50%,
+        var(--wuju-surface-light) 100%
+    );
+    background-size: 200% 100%;
+    animation: wuju-skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: var(--wuju-radius-md);
+}
+
+[data-theme="dark"] .wuju-skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--wuju-surface-dark) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        var(--wuju-surface-dark) 100%
+    );
+    background-size: 200% 100%;
+}
+
+@keyframes wuju-skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.wuju-skeleton-text {
+    height: 1em;
+    margin-bottom: var(--wuju-space-xs);
+}
+
+.wuju-skeleton-title {
+    height: 1.5em;
+    width: 60%;
+    margin-bottom: var(--wuju-space-sm);
+}
+
+.wuju-skeleton-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.wuju-skeleton-card {
+    padding: var(--wuju-space-md);
+    border-radius: var(--wuju-radius-lg);
+}
+
+/* Spinner Animation */
+.wuju-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-top-color: var(--wuju-accent-solid-light);
+    border-radius: 50%;
+    animation: wuju-spin 0.8s linear infinite;
+}
+
+[data-theme="dark"] .wuju-spinner {
+    border-color: rgba(255, 255, 255, 0.1);
+    border-top-color: var(--wuju-accent-solid-dark);
+}
+
+.wuju-spinner-sm {
+    width: 16px;
+    height: 16px;
+    border-width: 1.5px;
+}
+
+.wuju-spinner-lg {
+    width: 32px;
+    height: 32px;
+    border-width: 3px;
+}
+
+@keyframes wuju-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Loading State */
+.wuju-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--wuju-space-xl);
+    gap: var(--wuju-space-md);
+    color: var(--wuju-text-light);
+    opacity: 0.7;
+}
+
+[data-theme="dark"] .wuju-loading {
+    color: var(--wuju-text-dark);
+}
+
+/* Empty State */
+.wuju-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--wuju-space-2xl);
+    text-align: center;
+    color: var(--wuju-text-light);
+    opacity: 0.6;
+}
+
+.wuju-empty-state-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: var(--wuju-space-md);
+    opacity: 0.4;
+}
+
+.wuju-empty-state-title {
+    font-size: var(--wuju-text-xl);
+    font-weight: 600;
+    margin-bottom: var(--wuju-space-xs);
+    color: var(--wuju-text-light);
+}
+
+.wuju-empty-state-description {
+    font-size: var(--wuju-text-base);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+[data-theme="dark"] .wuju-empty-state {
+    color: var(--wuju-text-dark);
+}
+
+[data-theme="dark"] .wuju-empty-state-title {
+    color: var(--wuju-text-dark);
+}
+
+/* Error State */
+.wuju-error-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--wuju-space-xl);
+    gap: var(--wuju-space-md);
+    color: #ef4444;
+    text-align: center;
+}
+
+.wuju-error-state-icon {
+    width: 48px;
+    height: 48px;
+    color: #ef4444;
+}
+
+.wuju-error-state-title {
+    font-size: var(--wuju-text-lg);
+    font-weight: 600;
+    color: #ef4444;
+}
+
+.wuju-error-state-message {
+    font-size: var(--wuju-text-base);
+    color: var(--wuju-text-light);
+    opacity: 0.8;
+}
+
+[data-theme="dark"] .wuju-error-state-message {
+    color: var(--wuju-text-dark);
+}
+
+/* ====== FORM COMPONENTS ====== */
+
+/* Input Fields */
+.wuju-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: var(--wuju-text-base);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--wuju-text-light);
+    background: var(--wuju-surface-light);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--wuju-radius-md);
+    transition: all var(--wuju-transition-fast);
+    min-height: var(--wuju-touch-target-min);
+}
+
+.wuju-input::placeholder {
+    color: var(--wuju-text-light);
+    opacity: 0.5;
+}
+
+.wuju-input:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.wuju-input:focus {
+    outline: none;
+    border-color: var(--wuju-accent-solid-light);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.wuju-input:focus-visible {
+    outline: var(--wuju-focus-outline-width) solid var(--wuju-focus-ring-color);
+    outline-offset: var(--wuju-focus-outline-offset);
+}
+
+.wuju-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="dark"] .wuju-input {
+    color: var(--wuju-text-dark);
+    background: var(--wuju-surface-dark);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .wuju-input:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .wuju-input:focus {
+    border-color: var(--wuju-accent-solid-dark);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+[data-theme="dark"] .wuju-input:disabled {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Input States */
+.wuju-input-error {
+    border-color: #ef4444;
+}
+
+.wuju-input-error:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.wuju-input-success {
+    border-color: #10b981;
+}
+
+.wuju-input-success:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Textarea */
+.wuju-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: var(--wuju-text-base);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--wuju-text-light);
+    background: var(--wuju-surface-light);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--wuju-radius-md);
+    transition: all var(--wuju-transition-fast);
+    resize: vertical;
+    min-height: 120px;
+}
+
+.wuju-textarea::placeholder {
+    color: var(--wuju-text-light);
+    opacity: 0.5;
+}
+
+.wuju-textarea:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.wuju-textarea:focus {
+    outline: none;
+    border-color: var(--wuju-accent-solid-light);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.wuju-textarea:focus-visible {
+    outline: var(--wuju-focus-outline-width) solid var(--wuju-focus-ring-color);
+    outline-offset: var(--wuju-focus-outline-offset);
+}
+
+.wuju-textarea:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="dark"] .wuju-textarea {
+    color: var(--wuju-text-dark);
+    background: var(--wuju-surface-dark);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .wuju-textarea:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .wuju-textarea:focus {
+    border-color: var(--wuju-accent-solid-dark);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+/* Checkbox */
+.wuju-checkbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: var(--wuju-radius-sm);
+    background: var(--wuju-surface-light);
+    cursor: pointer;
+    position: relative;
+    transition: all var(--wuju-transition-fast);
+    margin: 0;
+}
+
+.wuju-checkbox:hover {
+    border-color: var(--wuju-accent-solid-light);
+}
+
+.wuju-checkbox:checked {
+    background: var(--wuju-accent-solid-light);
+    border-color: var(--wuju-accent-solid-light);
+}
+
+.wuju-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.wuju-checkbox:focus-visible {
+    outline: var(--wuju-focus-outline-width) solid var(--wuju-focus-ring-color);
+    outline-offset: var(--wuju-focus-outline-offset);
+}
+
+.wuju-checkbox:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+[data-theme="dark"] .wuju-checkbox {
+    background: var(--wuju-surface-dark);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .wuju-checkbox:hover {
+    border-color: var(--wuju-accent-solid-dark);
+}
+
+[data-theme="dark"] .wuju-checkbox:checked {
+    background: var(--wuju-accent-solid-dark);
+    border-color: var(--wuju-accent-solid-dark);
+}
+
+/* Radio Button */
+.wuju-radio {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    background: var(--wuju-surface-light);
+    cursor: pointer;
+    position: relative;
+    transition: all var(--wuju-transition-fast);
+    margin: 0;
+}
+
+.wuju-radio:hover {
+    border-color: var(--wuju-accent-solid-light);
+}
+
+.wuju-radio:checked {
+    border-color: var(--wuju-accent-solid-light);
+}
+
+.wuju-radio:checked::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--wuju-accent-solid-light);
+}
+
+.wuju-radio:focus-visible {
+    outline: var(--wuju-focus-outline-width) solid var(--wuju-focus-ring-color);
+    outline-offset: var(--wuju-focus-outline-offset);
+}
+
+.wuju-radio:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+[data-theme="dark"] .wuju-radio {
+    background: var(--wuju-surface-dark);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .wuju-radio:hover {
+    border-color: var(--wuju-accent-solid-dark);
+}
+
+[data-theme="dark"] .wuju-radio:checked {
+    border-color: var(--wuju-accent-solid-dark);
+}
+
+[data-theme="dark"] .wuju-radio:checked::after {
+    background: var(--wuju-accent-solid-dark);
+}
+
+/* Select Dropdown */
+.wuju-select {
+    width: 100%;
+    padding: 12px 16px;
+    padding-right: 40px;
+    font-size: var(--wuju-text-base);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--wuju-text-light);
+    background: var(--wuju-surface-light);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--wuju-radius-md);
+    transition: all var(--wuju-transition-fast);
+    cursor: pointer;
+    min-height: var(--wuju-touch-target-min);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231b1b1d' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+}
+
+.wuju-select:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.wuju-select:focus {
+    outline: none;
+    border-color: var(--wuju-accent-solid-light);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.wuju-select:focus-visible {
+    outline: var(--wuju-focus-outline-width) solid var(--wuju-focus-ring-color);
+    outline-offset: var(--wuju-focus-outline-offset);
+}
+
+.wuju-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="dark"] .wuju-select {
+    color: var(--wuju-text-dark);
+    background: var(--wuju-surface-dark);
+    border-color: rgba(255, 255, 255, 0.1);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23e8e8f0' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] .wuju-select:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .wuju-select:focus {
+    border-color: var(--wuju-accent-solid-dark);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+/* Form Validation States */
+.wuju-form-group {
+    margin-bottom: var(--wuju-space-md);
+}
+
+.wuju-form-label {
+    display: block;
+    font-size: var(--wuju-text-sm);
+    font-weight: 600;
+    color: var(--wuju-text-light);
+    margin-bottom: var(--wuju-space-xs);
+}
+
+[data-theme="dark"] .wuju-form-label {
+    color: var(--wuju-text-dark);
+}
+
+.wuju-form-error {
+    display: flex;
+    align-items: center;
+    gap: var(--wuju-space-xs);
+    margin-top: var(--wuju-space-xs);
+    font-size: var(--wuju-text-sm);
+    color: #ef4444;
+}
+
+.wuju-form-success {
+    display: flex;
+    align-items: center;
+    gap: var(--wuju-space-xs);
+    margin-top: var(--wuju-space-xs);
+    font-size: var(--wuju-text-sm);
+    color: #10b981;
+}
+
+.wuju-form-help {
+    margin-top: var(--wuju-space-xs);
+    font-size: var(--wuju-text-sm);
+    color: var(--wuju-text-light);
+    opacity: 0.6;
+}
+
+[data-theme="dark"] .wuju-form-help {
+    color: var(--wuju-text-dark);
+}
+
+/* ====== VISUAL TOKENS ====== */
+/* 
+ * VISUAL TOKEN SYSTEM - Grade C
+ * Comprehensive visual design tokens for consistent UI/UX
+ * 
+ * Usage Guidelines:
+ * - Always use CSS custom properties (variables) for colors, spacing, etc.
+ * - Never hardcode values - use tokens for maintainability
+ * - Test tokens in both light and dark modes
+ * - Ensure WCAG AA contrast ratios (4.5:1 minimum)
+ * 
+ * Token Categories:
+ * 1. Colors (Primary, Secondary, Semantic, Neutral)
+ * 2. Typography (Font families, sizes, weights, line heights)
+ * 3. Spacing (8-point grid system)
+ * 4. Borders (Radius, width, styles)
+ * 5. Shadows (Elevation levels)
+ * 6. Transitions (Timing functions, durations)
+ * 7. Z-index (Layering system)
+ */
+
+/* Color Tokens - Primary Palette */
+/* Light Mode Primary Colors */
+/* --wuju-bg-light: Background color for light mode (#f9fafc) */
+/* --wuju-text-light: Primary text color for light mode (#1b1b1d) */
+/* --wuju-accent-light: Gradient accent for light mode (135deg, #8b5cf6, #3b82f6) */
+/* --wuju-accent-solid-light: Solid accent color for light mode (#8b5cf6) */
+/* --wuju-surface-light: Surface/card background for light mode (#ffffff) */
+
+/* Dark Mode Primary Colors */
+/* --wuju-bg-dark: Background color for dark mode (#0f1014) */
+/* --wuju-text-dark: Primary text color for dark mode (#e8e8f0) */
+/* --wuju-accent-dark: Gradient accent for dark mode (135deg, #60a5fa, #a855f7) */
+/* --wuju-accent-solid-dark: Solid accent color for dark mode (#60a5fa) */
+/* --wuju-surface-dark: Surface/card background for dark mode (#1a1b21) */
+
+/* Semantic Color Tokens */
+:root {
+    /* Success States */
+    --wuju-success: #10b981;
+    --wuju-success-light: #d1fae5;
+    --wuju-success-dark: #059669;
+    
+    /* Error States */
+    --wuju-error: #ef4444;
+    --wuju-error-light: #fee2e2;
+    --wuju-error-dark: #dc2626;
+    
+    /* Warning States */
+    --wuju-warning: #f59e0b;
+    --wuju-warning-light: #fef3c7;
+    --wuju-warning-dark: #d97706;
+    
+    /* Info States */
+    --wuju-info: #3b82f6;
+    --wuju-info-light: #dbeafe;
+    --wuju-info-dark: #2563eb;
+    
+    /* Neutral Grays */
+    --wuju-gray-50: #f9fafb;
+    --wuju-gray-100: #f3f4f6;
+    --wuju-gray-200: #e5e7eb;
+    --wuju-gray-300: #d1d5db;
+    --wuju-gray-400: #9ca3af;
+    --wuju-gray-500: #6b7280;
+    --wuju-gray-600: #4b5563;
+    --wuju-gray-700: #374151;
+    --wuju-gray-800: #1f2937;
+    --wuju-gray-900: #111827;
+}
+
+/* Typography Tokens */
+/* Font Families */
+/* Primary Heading Font: 'Plus Jakarta Sans' - Modern, bold, geometric */
+/* Body Font: 'Rubik' - Readable, friendly, versatile */
+/* 
+ * Font Weight Scale:
+ * - 400: Regular (body text)
+ * - 600: Semi-bold (emphasis)
+ * - 700: Bold (buttons, labels)
+ * - 800: Extra-bold (headings)
+ */
+
+/* Spacing Tokens - 8-point Grid System */
+/* All spacing values follow 8px base unit for visual harmony */
+/* --wuju-space-xs: 8px - Tight spacing (icons, badges) */
+/* --wuju-space-sm: 16px - Small spacing (form fields, compact layouts) */
+/* --wuju-space-md: 24px - Medium spacing (cards, sections) */
+/* --wuju-space-lg: 40px - Large spacing (major sections) */
+/* --wuju-space-xl: 60px - Extra large spacing (hero sections) */
+/* --wuju-space-2xl: 80px - Maximum spacing (page-level sections) */
+
+/* Border Radius Tokens */
+/* --wuju-radius-sm: 4px - Small elements (badges, tags) */
+/* --wuju-radius-md: 8px - Standard elements (buttons, inputs) */
+/* --wuju-radius-lg: 16px - Cards, containers */
+/* --wuju-radius-xl: 24px - Large containers, modals */
+
+/* Shadow Tokens - Elevation System */
+/* --wuju-shadow-soft: Subtle elevation (cards, hover states) */
+/* --wuju-shadow-medium: Medium elevation (modals, dropdowns) */
+/* --wuju-shadow-strong: Strong elevation (overlays, popovers) */
+
+/* Transition Tokens */
+/* --wuju-transition-fast: 0.25s ease - Quick interactions (hover, click) */
+/* --wuju-transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1) - Smooth animations */
+
+/* Z-index Scale - Layering System */
+/* --wuju-z-base: 1 - Base layer */
+/* --wuju-z-dropdown: 100 - Dropdowns, tooltips */
+/* --wuju-z-sticky: 200 - Sticky headers, navigation */
+/* --wuju-z-modal: 300 - Modals, dialogs */
+/* --wuju-z-tooltip: 400 - Tooltips, popovers (highest) */
+
+/* ====== MOTION PERFORMANCE ====== */
+/* 
+ * MOTION PERFORMANCE GUIDELINES - Grade B
+ * Optimized animations and transitions for smooth 60fps performance
+ * 
+ * Performance Principles:
+ * 1. Use transform and opacity (GPU-accelerated properties)
+ * 2. Avoid animating layout properties (width, height, top, left)
+ * 3. Use will-change sparingly and remove after animation
+ * 4. Prefer CSS animations over JavaScript when possible
+ * 5. Respect prefers-reduced-motion for accessibility
+ * 6. Keep animation durations under 500ms for UI feedback
+ * 7. Use easing functions that feel natural
+ */
+
+/* GPU-Accelerated Transform Animations */
+/* ✅ GOOD: Animating transform (GPU-accelerated) */
+.wuju-animate-slide-in {
+    transform: translateX(-100%);
+    transition: transform var(--wuju-transition-smooth);
+}
+
+.wuju-animate-slide-in.active {
+    transform: translateX(0);
+}
+
+/* ✅ GOOD: Animating opacity (GPU-accelerated) */
+.wuju-animate-fade-in {
+    opacity: 0;
+    transition: opacity var(--wuju-transition-smooth);
+}
+
+.wuju-animate-fade-in.active {
+    opacity: 1;
+}
+
+/* ✅ GOOD: Combined transform + opacity */
+.wuju-animate-scale-fade {
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform var(--wuju-transition-smooth), opacity var(--wuju-transition-smooth);
+}
+
+.wuju-animate-scale-fade.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* ❌ AVOID: Animating layout properties (causes reflow) */
+/* .bad-animation {
+    width: 0;
+    transition: width 0.3s; // Causes layout recalculation
+} */
+
+/* Performance-Optimized Hover States */
+.wuju-hover-lift {
+    transition: transform var(--wuju-transition-fast), box-shadow var(--wuju-transition-fast);
+    will-change: transform;
+}
+
+.wuju-hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--wuju-shadow-medium);
+}
+
+.wuju-hover-lift:not(:hover) {
+    will-change: auto; /* Remove will-change when not needed */
+}
+
+/* Smooth Scroll Performance */
+.wuju-smooth-scroll {
+    scroll-behavior: smooth;
+    /* Use JavaScript for better control and performance */
+}
+
+/* Staggered Animation Pattern */
+.wuju-stagger-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wuju-stagger-item:nth-child(1) { transition-delay: 0ms; }
+.wuju-stagger-item:nth-child(2) { transition-delay: 50ms; }
+.wuju-stagger-item:nth-child(3) { transition-delay: 100ms; }
+.wuju-stagger-item:nth-child(4) { transition-delay: 150ms; }
+.wuju-stagger-item:nth-child(5) { transition-delay: 200ms; }
+
+.wuju-stagger-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optimized Loading Spinner */
+.wuju-spinner-optimized {
+    /* Use transform rotation (GPU-accelerated) */
+    animation: wuju-spin-optimized 0.8s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes wuju-spin-optimized {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Parallax Performance (use with caution) */
+.wuju-parallax {
+    will-change: transform;
+    transform: translateZ(0); /* Force GPU acceleration */
+}
+
+/* Reduce Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .wuju-animate-slide-in,
+    .wuju-animate-fade-in,
+    .wuju-animate-scale-fade,
+    .wuju-stagger-item {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Animation Duration Guidelines */
+/* Micro-interactions: 150-250ms (button clicks, hover states) */
+/* Standard transitions: 250-400ms (modals, dropdowns) */
+/* Complex animations: 400-600ms (page transitions, hero animations) */
+/* Avoid durations > 1000ms for UI elements */
+
+/* Easing Functions */
+/* ease-out: Natural deceleration (most UI elements) */
+/* cubic-bezier(0.4, 0, 0.2, 1): Material Design standard */
+/* ease-in-out: Smooth start and end (page transitions) */
+
+/* ====== BRAND VOICE ====== */
+/* 
+ * BRAND VOICE GUIDELINES - Grade A
+ * Comprehensive brand voice and tone guidelines for Wuju Space
+ * 
+ * Brand Personality:
+ * - Innovative: Forward-thinking, cutting-edge solutions
+ * - Approachable: Friendly, human-centered, not intimidating
+ * - Professional: Trustworthy, reliable, polished
+ * - Inspiring: Motivational, aspirational, empowering
+ * 
+ * Tone Principles:
+ * 1. Clear over clever - Prioritize clarity and understanding
+ * 2. Human over robotic - Write like you're talking to a friend
+ * 3. Confident but humble - Show expertise without arrogance
+ * 4. Action-oriented - Use active voice and strong verbs
+ */
+
+/* Typography Voice Examples */
+/* 
+ * ✅ DO: Use clear, descriptive headings
+ * Example: "Transform Your Digital Experience"
+ * 
+ * ❌ DON'T: Use vague or generic headings
+ * Example: "Solutions" or "Services"
+ */
+
+/* Button Copy Voice */
+/* 
+ * ✅ DO: Action-oriented, benefit-focused
+ * Examples:
+ * - "Start Your Journey"
+ * - "Explore Our Work"
+ * - "Get in Touch"
+ * - "See How It Works"
+ * 
+ * ❌ DON'T: Generic or passive
+ * Examples:
+ * - "Click Here"
+ * - "Submit"
+ * - "Learn More" (overused)
+ * - "Continue"
+ */
+
+/* Error Message Voice */
+/* 
+ * ✅ DO: Helpful, solution-oriented
+ * Example: "Oops! Something went wrong. Please try again or contact support if the issue persists."
+ * 
+ * ❌ DON'T: Technical or blaming
+ * Example: "Error 500: Internal Server Error" or "You entered the wrong information"
+ */
+
+/* Success Message Voice */
+/* 
+ * ✅ DO: Positive, encouraging
+ * Example: "Great! Your message has been sent. We'll get back to you within 24 hours."
+ * 
+ * ❌ DON'T: Robotic or minimal
+ * Example: "Success" or "Message sent"
+ */
+
+/* Empty State Voice */
+/* 
+ * ✅ DO: Helpful, guiding
+ * Example: "No projects yet. Start by creating your first project to see it here."
+ * 
+ * ❌ DON'T: Negative or unhelpful
+ * Example: "No data" or "Empty"
+ */
+
+/* Loading State Voice */
+/* 
+ * ✅ DO: Reassuring, informative
+ * Example: "Loading your projects..." or "Almost there..."
+ * 
+ * ❌ DON'T: Generic or technical
+ * Example: "Loading..." or "Please wait"
+ */
+
+/* Form Label Voice */
+/* 
+ * ✅ DO: Clear, specific, helpful
+ * Examples:
+ * - "Your Email Address"
+ * - "Project Description"
+ * - "Preferred Contact Method"
+ * 
+ * ❌ DON'T: Vague or technical
+ * Examples:
+ * - "Email"
+ * - "Description"
+ * - "Contact"
+ */
+
+/* Help Text Voice */
+/* 
+ * ✅ DO: Contextual, actionable
+ * Example: "Use a strong password with at least 8 characters, including numbers and symbols."
+ * 
+ * ❌ DON'T: Generic or unhelpful
+ * Example: "Enter password" or "Required field"
+ */
+
+/* Navigation Voice */
+/* 
+ * ✅ DO: Clear, scannable, action-oriented
+ * Examples:
+ * - "Our Work" (not "Portfolio")
+ * - "About Us" (not "Company")
+ * - "Get Started" (not "Sign Up")
+ * 
+ * ❌ DON'T: Jargon or unclear terms
+ * Examples:
+ * - "Solutions" (too vague)
+ * - "Resources" (too generic)
+ * - "Contact" (use "Get in Touch" instead)
+ */
+
+/* Hero Section Voice */
+/* 
+ * ✅ DO: Bold, inspiring, benefit-focused
+ * Example: "Turning Imagination Into Interaction - Where Unreal Journeys Unfold"
+ * 
+ * ❌ DON'T: Generic or feature-focused
+ * Example: "We Build Websites" or "Digital Solutions Provider"
+ */
+
+/* Call-to-Action Voice */
+/* 
+ * ✅ DO: Urgent but not pushy, benefit-focused
+ * Examples:
+ * - "Start Your Project Today"
+ * - "Schedule a Free Consultation"
+ * - "See Our Work in Action"
+ * 
+ * ❌ DON'T: Pushy or generic
+ * Examples:
+ * - "Buy Now"
+ * - "Sign Up Today!" (too many exclamation marks)
+ * - "Click Here"
+ */
+
+/* Microcopy Voice */
+/* 
+ * ✅ DO: Friendly, helpful, concise
+ * Examples:
+ * - "Need help? We're here for you."
+ * - "This usually takes about 2 minutes"
+ * - "You're all set!"
+ * 
+ * ❌ DON'T: Robotic or unhelpful
+ * Examples:
+ * - "Error occurred"
+ * - "Processing..."
+ * - "Complete"
+ */
+
+/* Accessibility Voice */
+/* 
+ * ✅ DO: Clear, descriptive alt text and labels
+ * Example: "Close navigation menu" (not "X" or "Close")
+ * 
+ * ❌ DON'T: Vague or missing context
+ * Example: "Button" or "Image"
+ */
+
+/* Brand Voice Consistency Rules */
+/* 
+ * 1. Always use "we" and "you" (conversational, not third-person)
+ * 2. Avoid jargon unless necessary, then explain it
+ * 3. Use contractions for friendly tone ("we're" not "we are")
+ * 4. Keep sentences under 20 words when possible
+ * 5. Use active voice ("We build" not "Built by us")
+ * 6. Show, don't tell ("See our work" not "We are experienced")
+ * 7. Use specific numbers ("24 hours" not "soon")
+ * 8. End with action when possible
+ */
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+    .wuju-h1 {
+        font-size: var(--wuju-text-4xl);
+    }
+    
+    .wuju-h2 {
+        font-size: var(--wuju-text-2xl);
+    }
+    
+    .wuju-grid,
+    .wuju-grid-2 {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Ensure touch targets are maintained on mobile */
+    .wuju-btn,
+    .wuju-icon-btn {
+        min-height: var(--wuju-touch-target-min);
+        min-width: var(--wuju-touch-target-min);
+    }
+}

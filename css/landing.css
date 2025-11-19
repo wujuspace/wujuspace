@@ -65,9 +65,9 @@
 }
 
 .hero-text-bold {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.03em;
+    font-family: 'Prata', serif;
+    font-weight: 400;
+    letter-spacing: 0;
     display: inline-block;
     position: relative;
 }
@@ -83,10 +83,10 @@
 }
 
 .hero-text-serif {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    font-style: italic;
-    letter-spacing: -0.02em;
+    font-family: 'Prata', serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0;
     display: inline-block;
 }
 
@@ -122,10 +122,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: clamp(8rem, 15vw, 12rem);
-    font-weight: 300;
-    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-family: 'Prata', serif;
     color: rgba(0, 0, 0, 0.15);
-    letter-spacing: -0.05em;
+    letter-spacing: 0;
     pointer-events: none;
     user-select: none;
 }
@@ -147,10 +147,10 @@
 
 .badge-icon {
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--white);
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: -0.02em;
+    font-family: 'Prata', serif;
+    letter-spacing: 0;
 }
 
 .hero-subtitle {
@@ -461,6 +461,16 @@
     transition: all 0.3s ease;
 }
 
+/* Dark mode: make client logos monochrome (light/white) */
+[data-theme="dark"] .client-logo-img {
+    filter: grayscale(100%) opacity(0.5) brightness(0) invert(1);
+}
+
+[data-theme="dark"] .client-logo:hover .client-logo-img {
+    filter: grayscale(100%) opacity(0.8) brightness(0) invert(1);
+    transform: translateY(-4px) scale(1.1);
+}
+
 .client-logo:hover .client-logo-img {
     filter: grayscale(0%) opacity(1);
     transform: translateY(-4px) scale(1.1);
@@ -635,6 +645,9 @@
     position: relative;
     background-color: var(--cream);
     max-width: 700px;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
 }
 
 .project-item:last-child {
@@ -659,12 +672,13 @@
 
 .project-title {
     font-size: clamp(2rem, 3vw, 3rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.2;
     color: var(--text-dark);
     transition: color 0.3s ease;
     margin-bottom: 1rem;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .project-meta {
@@ -680,6 +694,7 @@
     font-weight: 500;
     color: var(--text-muted);
     transition: color 0.3s ease;
+    font-family: 'Prata', serif;
 }
 
 .project-tag {
@@ -688,6 +703,7 @@
     color: var(--text-muted);
     transition: color 0.3s ease;
     font-style: italic;
+    font-family: 'Prata', serif;
 }
 
 .project-description {
@@ -698,7 +714,7 @@
     transition: color 0.3s ease;
     margin-top: 1rem;
     max-width: 100%;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Prata', serif;
 }
 
 /* Our Services Section */
@@ -781,20 +797,22 @@
 
 .service-category-number {
     font-size: clamp(4rem, 8vw, 6rem);
-    font-weight: 700;
+    font-weight: 400;
     color: rgba(255, 255, 255, 0.9);
     line-height: 1;
-    letter-spacing: -0.05em;
+    letter-spacing: 0;
     margin-bottom: 1rem;
+    font-family: 'Prata', serif;
 }
 
 .service-category-title {
     font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    font-weight: 700;
+    font-weight: 600;
     color: rgba(255, 255, 255, 0.95);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     margin-bottom: 0.5rem;
     line-height: 1.2;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .service-category-card:nth-child(4) .service-category-number,
@@ -810,6 +828,7 @@
     font-weight: 400;
     text-transform: lowercase;
     letter-spacing: 0.05em;
+    font-family: 'Prata', serif;
 }
 
 .service-category-card:nth-child(4) .service-category-tag,
@@ -883,15 +902,18 @@
 
 .step-number {
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 400;
     min-width: 60px;
+    font-family: 'Prata', serif;
+    letter-spacing: 0;
 }
 
 .step-title {
     font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 600;
     flex: 1;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .step-toggle {
@@ -1030,11 +1052,12 @@
 
 .team-name {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-dark);
     margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     transition: color 0.3s ease;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .team-card:hover .team-name {

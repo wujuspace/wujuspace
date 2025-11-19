@@ -1,61 +1,157 @@
-// Services Page - Filtering and Project Card Interactions
+// Services Page - Multi-Select Filtering, Sorting, and Project Card Interactions
 document.addEventListener('DOMContentLoaded', function() {
-    const filterChips = document.querySelectorAll('.filter-chip');
+    const platformChips = document.querySelectorAll('.platform-chip[data-filter]');
+    const sortChips = document.querySelectorAll('.sort-chip[data-sort]');
+    const clientChips = document.querySelectorAll('.client-chip[data-client]');
     const projectCards = document.querySelectorAll('.project-card');
+    const projectsContainer = document.querySelector('.services-projects');
     
-    if (!filterChips.length || !projectCards.length) return;
+    const platformContainer = document.getElementById('platform-chips-container');
+    const clientContainer = document.getElementById('client-chips-container');
     
-    let activeFilter = null;
+    if (!projectCards.length || !projectsContainer) return;
     
-    // Check for URL parameter to auto-select filter
-    const urlParams = new URLSearchParams(window.location.search);
-    const filterParam = urlParams.get('filter');
+    // Store original order for restoring
+    const platformOriginalOrder = Array.from(platformChips);
+    const clientOriginalOrder = Array.from(clientChips);
     
-    if (filterParam) {
-        // Find and activate the matching chip
-        const matchingChip = Array.from(filterChips).find(chip => chip.getAttribute('data-filter') === filterParam);
-        if (matchingChip) {
-            matchingChip.classList.add('active');
-            activeFilter = filterParam;
-            filterProjects(filterParam);
-        }
+    // Multi-select state
+    let activePlatformFilters = new Set();
+    let activeClientFilters = new Set();
+    let activeSort = 'newest'; // Default to newest
+    
+    // Initialize: Set newest as active by default
+    const newestChip = document.querySelector('.sort-chip[data-sort="newest"]');
+    if (newestChip) {
+        newestChip.classList.add('active');
     }
     
-    // Filter chip click handler
-    filterChips.forEach(chip => {
+    // Sort chips by name initially
+    sortChipsByName(platformContainer, platformChips);
+    sortChipsByName(clientContainer, clientChips);
+    
+    // Sort function - sorts chips by text content alphabetically
+    function sortChipsByName(container, chips) {
+        const sortedChips = Array.from(chips).sort((a, b) => {
+            return a.textContent.trim().localeCompare(b.textContent.trim());
+        });
+        
+        // Clear container and re-append in sorted order
+        container.innerHTML = '';
+        sortedChips.forEach(chip => {
+            container.appendChild(chip);
+        });
+    }
+    
+    // Move active chips to front
+    function moveActiveToFront(container, chips, activeSet, getValue) {
+        const activeChips = [];
+        const inactiveChips = [];
+        
+        chips.forEach(chip => {
+            const value = getValue(chip);
+            if (activeSet.has(value)) {
+                activeChips.push(chip);
+            } else {
+                inactiveChips.push(chip);
+            }
+        });
+        
+        // Sort inactive chips by name
+        inactiveChips.sort((a, b) => {
+            return a.textContent.trim().localeCompare(b.textContent.trim());
+        });
+        
+        // Clear and re-append: active first, then inactive
+        container.innerHTML = '';
+        activeChips.forEach(chip => container.appendChild(chip));
+        inactiveChips.forEach(chip => container.appendChild(chip));
+    }
+    
+    // Platform filter chip click handler (multi-select)
+    platformChips.forEach(chip => {
         chip.addEventListener('click', function() {
             const filterValue = this.getAttribute('data-filter');
             
-            // Remove active class from all chips
-            filterChips.forEach(c => c.classList.remove('active'));
-            
-            // If clicking the same chip, deselect it (show all)
-            if (activeFilter === filterValue) {
-                activeFilter = null;
-                showAllProjects();
+            // Toggle selection
+            if (activePlatformFilters.has(filterValue)) {
+                activePlatformFilters.delete(filterValue);
+                this.classList.remove('active');
             } else {
-                // Activate clicked chip
+                activePlatformFilters.add(filterValue);
                 this.classList.add('active');
-                activeFilter = filterValue;
-                filterProjects(filterValue);
             }
+            
+            // Reorder chips: active first, then inactive sorted by name
+            moveActiveToFront(
+                platformContainer,
+                Array.from(platformContainer.querySelectorAll('.platform-chip')),
+                activePlatformFilters,
+                (chip) => chip.getAttribute('data-filter')
+            );
+            
+            applyFilters();
         });
     });
     
-    // Filter projects based on selected chip
-    function filterProjects(filterValue) {
-        projectCards.forEach((card, index) => {
-            const cardCategory = card.getAttribute('data-category');
+    // Sort chip click handler (single select)
+    sortChips.forEach(chip => {
+        chip.addEventListener('click', function() {
+            const sortValue = this.getAttribute('data-sort');
             
-            if (cardCategory === filterValue) {
-                // Show matching cards with fade in
-                setTimeout(() => {
-                    card.classList.remove('hidden');
-                    // Force reflow
-                    void card.offsetHeight;
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateX(0)';
-                }, index * 50); // Stagger animation
+            // Remove active class from all sort chips
+            sortChips.forEach(c => c.classList.remove('active'));
+            
+            // Activate clicked chip
+            this.classList.add('active');
+            activeSort = sortValue;
+            
+            applyFilters();
+        });
+    });
+    
+    // Client filter chip click handler (multi-select)
+    clientChips.forEach(chip => {
+        chip.addEventListener('click', function() {
+            const clientValue = this.getAttribute('data-client');
+            
+            // Toggle selection
+            if (activeClientFilters.has(clientValue)) {
+                activeClientFilters.delete(clientValue);
+                this.classList.remove('active');
+            } else {
+                activeClientFilters.add(clientValue);
+                this.classList.add('active');
+            }
+            
+            // Reorder chips: active first, then inactive sorted by name
+            moveActiveToFront(
+                clientContainer,
+                Array.from(clientContainer.querySelectorAll('.client-chip')),
+                activeClientFilters,
+                (chip) => chip.getAttribute('data-client')
+            );
+            
+            applyFilters();
+        });
+    });
+    
+    // Main function to apply all filters and sorting
+    function applyFilters() {
+        const visibleCards = [];
+        
+        // Filter by platform and client (multi-select)
+        projectCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            const cardClient = card.getAttribute('data-client');
+            
+            // If no filters selected, show all
+            // Otherwise, card must match at least one selected filter in each category
+            let matchesPlatform = activePlatformFilters.size === 0 || activePlatformFilters.has(cardCategory);
+            let matchesClient = activeClientFilters.size === 0 || activeClientFilters.has(cardClient);
+            
+            if (matchesPlatform && matchesClient) {
+                visibleCards.push(card);
             } else {
                 // Hide non-matching cards with fade out
                 card.style.opacity = '0';
@@ -63,21 +159,42 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 setTimeout(() => {
                     card.classList.add('hidden');
-                }, 300); // Wait for animation to complete
+                }, 300);
             }
         });
-    }
-    
-    // Show all projects
-    function showAllProjects() {
-        projectCards.forEach((card, index) => {
+        
+        // Sort visible cards
+        visibleCards.sort((a, b) => {
+            const dateA = new Date(a.getAttribute('data-date'));
+            const dateB = new Date(b.getAttribute('data-date'));
+            
+            if (activeSort === 'newest') {
+                return dateB - dateA; // Newest first
+            } else {
+                return dateA - dateB; // Oldest first
+            }
+        });
+        
+        // Reorder cards in DOM and show them
+        visibleCards.forEach((card, index) => {
+            // Remove from current position
+            card.remove();
+            
+            // Insert at new position
+            if (index === 0) {
+                projectsContainer.insertBefore(card, projectsContainer.firstChild);
+            } else {
+                projectsContainer.insertBefore(card, visibleCards[index - 1].nextSibling);
+            }
+            
+            // Show with animation
             setTimeout(() => {
                 card.classList.remove('hidden');
                 // Force reflow
                 void card.offsetHeight;
                 card.style.opacity = '1';
                 card.style.transform = 'translateX(0)';
-            }, index * 30); // Stagger animation
+            }, index * 50); // Stagger animation
         });
     }
     
@@ -85,17 +202,23 @@ document.addEventListener('DOMContentLoaded', function() {
     projectCards.forEach(card => {
         // Hover effect enhancement
         card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateX(12px)';
-            this.style.boxShadow = '0 6px 25px rgba(0, 0, 0, 0.12)';
+            if (!this.classList.contains('hidden')) {
+                this.style.transform = 'translateX(12px)';
+                this.style.boxShadow = '0 6px 25px rgba(0, 0, 0, 0.12)';
+            }
         });
         
         card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateX(0)';
-            this.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+            if (!this.classList.contains('hidden')) {
+                this.style.transform = 'translateX(0)';
+                this.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+            }
         });
         
         // Click effect with ripple animation
         card.addEventListener('click', function(e) {
+            if (this.classList.contains('hidden')) return;
+            
             // Create ripple effect
             const ripple = document.createElement('span');
             const rect = this.getBoundingClientRect();
@@ -108,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ripple.style.top = y + 'px';
             ripple.style.position = 'absolute';
             ripple.style.borderRadius = '50%';
-            ripple.style.background = 'rgba(77, 166, 255, 0.3)';
+            ripple.style.background = 'rgba(139, 92, 246, 0.3)';
             ripple.style.transform = 'scale(0)';
             ripple.style.animation = 'ripple 0.6s ease-out';
             ripple.style.pointerEvents = 'none';
@@ -133,11 +256,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Active state animation
         card.addEventListener('mousedown', function() {
-            this.style.transform = 'translateX(6px) scale(0.96)';
+            if (!this.classList.contains('hidden')) {
+                this.style.transform = 'translateX(6px) scale(0.96)';
+            }
         });
         
         card.addEventListener('mouseup', function() {
-            this.style.transform = 'translateX(12px) scale(1)';
+            if (!this.classList.contains('hidden')) {
+                this.style.transform = 'translateX(12px) scale(1)';
+            }
         });
     });
     
@@ -153,4 +280,3 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 });
-
